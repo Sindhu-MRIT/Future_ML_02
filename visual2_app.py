@@ -134,12 +134,12 @@ pri_counts = df['Priority'].value_counts()
 with st.sidebar:
     st.markdown("""
     <div style='padding:4px 0 18px'>
-        <div style='font-family:Playfair Display,serif;font-size:18px;color:#f8fafc'>Ticket Classifier</div>
-        <div style='font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#334155;margin-top:4px'>Support Operations</div>
+        <div style='font-family:Playfair Display,serif;font-size:18px;color:#3b82f6'>Ticket Classifier</div>
+        <div style='font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#3b82f6;margin-top:4px;font-weight:700'>Support Operations</div>
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("<div style='font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#334155;margin-bottom:8px'>Try it live</div>", unsafe_allow_html=True)
+    st.markdown("<div style='font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#3b82f6;margin-bottom:8px;font-weight:700'>Try it live</div>", unsafe_allow_html=True)
     ticket_input = st.text_area(
         "Ticket text",
         value="My laptop screen stopped working and I cannot access any of my files or do any work.",
@@ -149,7 +149,7 @@ with st.sidebar:
     classify_btn = st.button("Classify this ticket")
 
     st.markdown("---")
-    st.markdown("<div style='font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#334155;margin-bottom:10px'>Page guide</div>", unsafe_allow_html=True)
+    st.markdown("<div style='font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#3b82f6;margin-bottom:10px;font-weight:700'>Page guide</div>", unsafe_allow_html=True)
     sections = [
         ("4 key numbers", "Quick snapshot of the system"),
         ("Live result", "What the model decided"),
@@ -161,13 +161,13 @@ with st.sidebar:
     for title, desc in sections:
         st.markdown(f"""
         <div style='border-left:2px solid #3b82f6;padding:5px 10px;margin-bottom:7px'>
-            <div style='font-size:12px;color:#f8fafc;font-weight:500'>{title}</div>
-            <div style='font-size:11px;color:#334155;margin-top:1px;line-height:1.5'>{desc}</div>
+            <div style='font-size:12px;color:#bc9f7e;font-weight:1000'>{title}</div>
+            <div style='font-size:11px;color:#3b82f6;margin-top:1px;line-height:1.5'>{desc}</div>
         </div>""", unsafe_allow_html=True)
 
     st.markdown("---")
     st.markdown("""
-    <div style='font-size:11px;color:#334155;line-height:2.2'>
+    <div style='font-size:11px;color:#3b82f6;line-height:2.2;font-weight:700'>
         Tickets — 47,000<br>
         Categories — 8<br>
         Priority levels — 3<br>
@@ -189,7 +189,7 @@ if classify_btn and ticket_input.strip():
 
 
 st.markdown('<div class="headline">Which ticket needs attention first?</div>', unsafe_allow_html=True)
-st.markdown('<div class="subline">A machine learning system that reads support tickets and instantly sorts them by category and urgency — trained on 47,000 real IT support tickets.</div>', unsafe_allow_html=True)
+st.markdown('<div class="subline"><strong>A machine learning system that reads support tickets and instantly sorts them by category and urgency — trained on 47,000 real IT support tickets.</strong></div>', unsafe_allow_html=True)
 st.markdown("""
 <div class="hint-box">
     Type any support ticket into the box on the left and hit classify. The system assigns a category,
@@ -211,7 +211,7 @@ for col, (color, label, num, desc) in zip([s1, s2, s3, s4], stats):
         st.markdown(f"""
         <div class="stat-card">
             <div class="stat-top" style="background:{color}"></div>
-            <div class="stat-label">{label}</div>
+            <div class="stat-label"><strong>{label}</strong></div>
             <div class="stat-num">{num}</div>
             <div class="stat-desc">{desc}</div>
         </div>""", unsafe_allow_html=True)
@@ -221,7 +221,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 left, right = st.columns([1.1, 0.9], gap="small")
 
 with left:
-    st.markdown('<div class="section-label">Live classifier</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-label"><span style="font-weight:1000">Live classifier</span></div>', unsafe_allow_html=True)
     st.markdown('<div class="section-title">What the model decided</div>', unsafe_allow_html=True)
 
     if category:
@@ -232,7 +232,7 @@ with left:
             <div class="ticket-text">"{ticket_input[:120]}..."</div>
             <span class="badge badge-cat">{category}</span>
             <span class="badge {p_badge}">{priority} priority</span>
-            <div style='margin-top:14px;font-size:11px;color:#94a3b8'>Confidence</div>
+            <div style='margin-top:14px;font-size:11px;color:#94a3b8;font-weight:700'>Confidence</div>
             <div class="conf-track"><div class="conf-fill" style="width:{conf_pct}"></div></div>
             <div style='font-size:13px;color:#1e40af;font-weight:600;margin-bottom:10px'>{conf_pct}</div>
             <div style='font-size:12px;color:#64748b;line-height:1.7'>
@@ -260,16 +260,15 @@ with left:
     else:
         st.markdown("""
         <div class="result-wrap" style='text-align:center;padding:40px 20px'>
-            <div style='font-size:14px;color:#94a3b8;margin-bottom:8px'>No ticket classified yet</div>
-            <div style='font-size:12px;color:#cbd5e1;line-height:1.7'>
-                Type a support ticket in the left sidebar and hit the button to see the classifier in action.
+            <div style='font-size:14px;color:#94a3b8;margin-bottom:8px'><span style='font-weight:1000'>No ticket classified yet</span></div>
+            <div style='font-size:12px;color:#cbd5e1;line-height:1.7'><span style='font-weight:700'>Type a support ticket in the left sidebar and hit the button to see the classifier in action.</span></div>
             </div>
         </div>""", unsafe_allow_html=True)
 
 with right:
     st.markdown('<div class="section-label">Ticket volume</div>', unsafe_allow_html=True)
     st.markdown('<div class="section-title">Category breakdown</div>', unsafe_allow_html=True)
-    st.markdown("<div style='font-size:13px;color:#94a3b8;margin-bottom:16px;font-weight:300'>How all 47,000 tickets split across the 8 categories the model was trained on.</div>", unsafe_allow_html=True)
+    st.markdown("<div style='font-size:13px;color:#bc9f7e;margin-bottom:16px;font-weight:500'>How all 47,000 tickets split across the 8 categories the model was trained on.</div>", unsafe_allow_html=True)
 
     sorted_cats = cat_counts.sort_values(ascending=True)
     bar_colors = [CAT_COLORS.get(c, '#94a3b8') for c in sorted_cats.index]
@@ -279,8 +278,8 @@ with right:
         hovertemplate='%{y} — %{x:,} tickets<extra></extra>'
     ))
     fig.update_layout(**CHART,
-        xaxis=dict(**GRID, tickformat=',d'),
-        yaxis=dict(gridcolor='rgba(0,0,0,0)', zeroline=False), height=280)
+        xaxis=dict(**GRID, tickformat=',d', tickcolor='#bc9f7e', tickfont=dict(color='#bc9f7e')),
+        yaxis=dict(gridcolor='rgba(0,0,0,0)', zeroline=False, tickcolor='#bc9f7e', tickfont=dict(color='#bc9f7e')), height=280)
     st.plotly_chart(fig, use_container_width=True)
 
     st.markdown("<div style='font-size:13px;font-weight:600;color:#0f172a;margin:16px 0 10px'>Priority split across all tickets</div>", unsafe_allow_html=True)
@@ -291,14 +290,14 @@ with right:
         hovertemplate='%{x} — %{y:,} tickets<extra></extra>'
     ))
     fig2.update_layout(**CHART,
-        xaxis=dict(**GRID), yaxis=dict(**GRID, tickformat=',d'), height=200)
+        xaxis=dict(**GRID, tickcolor='#bc9f7e', tickfont=dict(color='#bc9f7e')), yaxis=dict(**GRID, tickformat=',d', tickcolor='#bc9f7e', tickfont=dict(color='#bc9f7e')), height=200)
     st.plotly_chart(fig2, use_container_width=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-st.markdown('<div class="section-label">Model accuracy</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-label"><span style="font-weight:1000">Model accuracy</span></div>', unsafe_allow_html=True)
 st.markdown('<div class="section-title">Where the model gets it right — and where it slips</div>', unsafe_allow_html=True)
-st.markdown("<div style='font-size:13px;color:#94a3b8;margin-bottom:16px;font-weight:300'>Each row is the real category. Each column is what the model predicted. Darker diagonal means more accurate.</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:13px;color:#bc9f7e;margin-bottom:16px;font-weight:500'>Each row is the real category. Each column is what the model predicted. Darker diagonal means more accurate.</div>", unsafe_allow_html=True)
 
 fig3 = go.Figure(go.Heatmap(
     z=cm, x=list(cat_model.classes_), y=list(cat_model.classes_),
@@ -307,13 +306,13 @@ fig3 = go.Figure(go.Heatmap(
     text=cm, texttemplate='%{text}', textfont=dict(size=11, color='#0f172a')
 ))
 fig3.update_layout(**CHART,
-    xaxis=dict(title='Predicted', tickangle=-30, showgrid=False),
-    yaxis=dict(title='Actual', showgrid=False, autorange='reversed'), height=420)
+    xaxis=dict(title='Predicted', tickangle=-30, showgrid=False, tickcolor='#bc9f7e', tickfont=dict(color='#bc9f7e')),
+    yaxis=dict(title='Actual', showgrid=False, autorange='reversed', tickcolor='#bc9f7e', tickfont=dict(color='#bc9f7e')), height=420)
 st.plotly_chart(fig3, use_container_width=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-st.markdown('<div class="section-label">Why this matters</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-label"><span style="font-weight:1000">Why this matters</span></div>', unsafe_allow_html=True)
 st.markdown('<div class="section-title">What this fixes for a support team</div>', unsafe_allow_html=True)
 
 a1, a2, a3 = st.columns(3, gap="small")
@@ -329,7 +328,7 @@ for col, (num, title, body) in zip([a1, a2, a3], actions):
     with col:
         st.markdown(f"""
         <div class="action-card">
-            <div class="ac-num">{num}</div>
+            <div class="ac-num" style="color:#bc9f7e;font-weight:bold">{num}</div>
             <div class="ac-title">{title}</div>
             <div class="ac-body">{body}</div>
         </div>""", unsafe_allow_html=True)
